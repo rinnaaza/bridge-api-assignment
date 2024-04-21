@@ -66,9 +66,8 @@ The JSON file will have the following formalism:
 ## Installation:
 Type in cmd :
 ```bash
-git clone https://github.com/rinnaaza/bridge-api.git
+git clone https://github.com/rinnaaza/bridge-api-assignment.git
 cd bridge-api
-git pull origin master
 ```
 
 Once you have the repository locally: 
@@ -78,7 +77,7 @@ npm install
 ```
 
 ## Configuration:
-Create `.env` file that will have the following environment variables:
+Create `.env` file in the root that will have the following environment variables:
 ```
 BRIDGE_API_BASE_URL = ""
 BRIDGE_API_CLIENT_ID = ""
