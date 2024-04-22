@@ -1,0 +1,4 @@
+node_modules
+.env
+bridge-api-results.json
+tests/fixtures

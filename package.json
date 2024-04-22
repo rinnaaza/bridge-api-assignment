@@ -1,0 +1,21 @@
+{
+  "name": "bridge-api-assignment",
+  "version": "1.0.0",
+  "description": "Get an overview of a dummy customer's banking situation. \r To do this, we're going to consume the API of **Bridge**, the B2B service of Bankin, a leader in bank account aggregation.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "jest": "^29.7.0",
+    "nock": "^13.5.4",
+    "superagent": "^8.1.2"
+  }
+}
