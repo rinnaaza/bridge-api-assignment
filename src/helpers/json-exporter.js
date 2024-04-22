@@ -41,7 +41,7 @@ class JsonExporter {
         type: account.type,
         currency_code: account.currency_code,
         iban: account.iban,
-      }))
+      })),
     }));
 
     const formattedTransactions = this.#transactions.map((transaction) => ({
@@ -59,11 +59,11 @@ class JsonExporter {
       show_client_side: transaction.show_client_side,
     }));
 
-    return ({
+    return {
       access_token: formattedTokenInfo,
       items: formattedItems,
       transactions: formattedTransactions,
-    });
+    };
   }
 
   /**
@@ -81,9 +81,9 @@ class JsonExporter {
     const filePath = path;
     fs.writeFileSync(filePath, jsonData, (err) => {
       if (err) {
-      console.error("Error writing JSON file", err);
+        console.error("Error writing JSON file", err);
       }
-  });
+    });
   }
 }
 

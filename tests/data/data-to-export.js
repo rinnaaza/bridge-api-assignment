@@ -25,7 +25,7 @@ const items = [
         updated_at: `${faker.date.past()}`,
         type: faker.string.alpha(),
         currency_code: faker.string.alpha(),
-        iban: faker.string.alpha()
+        iban: faker.string.alpha(),
       },
       {
         id: faker.number.int(),
@@ -37,15 +37,12 @@ const items = [
         updated_at: `${faker.date.past()}`,
         type: faker.string.alpha(),
         currency_code: faker.string.alpha(),
-        iban: faker.string.alpha()
-      }
+        iban: faker.string.alpha(),
+      },
     ],
   },
 ];
 
-const transactions = [
-  firstTransaction,
-  secondTransaction
-];
+const transactions = [firstTransaction, secondTransaction];
 
 export { tokenInfo, items, transactions };
