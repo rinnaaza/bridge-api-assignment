@@ -19,12 +19,25 @@ const email = process.env.EMAIL;
 const password = process.env.PASSWORD;
 
 // Instantiate the services
-const httpClient = new HttpClient(baseUrl, clientId, clientSecret, bridgeVersion);
+const httpClient = new HttpClient(
+  baseUrl,
+  clientId,
+  clientSecret,
+  bridgeVersion
+);
 const usersService = new UsersService(httpClient);
 const itemsService = new ItemsService(httpClient);
 const transactionsService = new TransactionsService(httpClient);
 const accountsService = new AccountsService(httpClient);
 
-const jsonFilePath = "./bridge-api-results.json"
+const jsonFilePath = "./bridge-api-results.json";
 
-await generateUserData(usersService, itemsService, transactionsService, accountsService, email, password, jsonFilePath);
+await generateUserData(
+  usersService,
+  itemsService,
+  transactionsService,
+  accountsService,
+  email,
+  password,
+  jsonFilePath
+);

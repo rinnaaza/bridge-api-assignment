@@ -12,7 +12,7 @@ const firstTransaction = {
   category_id: faker.number.int(),
   account_id: faker.number.int(),
   is_future: true,
-  show_client_side: true
+  show_client_side: true,
 };
 
 const secondTransaction = {
@@ -27,7 +27,7 @@ const secondTransaction = {
   category_id: faker.number.int(),
   account_id: faker.number.int(),
   is_future: true,
-  show_client_side: true
+  show_client_side: true,
 };
 
 const thirdTransaction = {
@@ -42,7 +42,7 @@ const thirdTransaction = {
   category_id: faker.number.int(),
   account_id: faker.number.int(),
   is_future: true,
-  show_client_side: true
+  show_client_side: true,
 };
 
 const fourthTransaction = {
@@ -57,7 +57,12 @@ const fourthTransaction = {
   category_id: faker.number.int(),
   account_id: faker.number.int(),
   is_future: true,
-  show_client_side: true
+  show_client_side: true,
 };
 
-export { firstTransaction, secondTransaction, thirdTransaction, fourthTransaction };
+export {
+  firstTransaction,
+  secondTransaction,
+  thirdTransaction,
+  fourthTransaction,
+};
