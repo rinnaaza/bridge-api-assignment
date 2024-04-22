@@ -27,4 +27,4 @@ const accountsService = new AccountsService(httpClient);
 
 const jsonFilePath = "./bridge-api-results.json"
 
-await generateUserDate(usersService, itemsService, transactionsService, accountsService, email, password, jsonFilePath);
+await generateUserData(usersService, itemsService, transactionsService, accountsService, email, password, jsonFilePath);

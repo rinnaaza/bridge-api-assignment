@@ -10,7 +10,7 @@ import { JsonExporter } from "./json-exporter.js";
  * @param {string} password - Password of user.
  * @param {string} jsonFilePath - Path of the json file we want to generate. 
  */
-const generateUserDate = async (usersService, itemsService, transactionsService, accountsService, email, password, jsonFilePath) => {
+const generateUserData = async (usersService, itemsService, transactionsService, accountsService, email, password, jsonFilePath) => {
   // Get userId by email and authorize the user
   const uuid = await usersService.getUserIdByEmail({ email });
 
@@ -33,4 +33,4 @@ const generateUserDate = async (usersService, itemsService, transactionsService,
   jsonExporter.export(jsonFilePath);
 };
 
-export { generateUserDate };
+export { generateUserData };
