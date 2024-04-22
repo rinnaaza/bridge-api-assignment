@@ -1,7 +1,7 @@
 import fs from "fs";
 import nock from "nock";
 
-import { generateUserDate } from "../src/helpers/generate-user-data.js";
+import { generateUserData } from "../src/helpers/generate-user-data.js";
 import { UsersService } from "../src/services/users-service.js";
 import { ItemsService } from "../src/services/items-service.js";
 import { TransactionsService } from "../src/services/transactions-service.js";
@@ -13,7 +13,7 @@ import { firstItem } from "./data/items.js";
 import { firstAccount, thirdAccount } from "./data/accounts.js";
 import { firstTransaction, secondTransaction, thirdTransaction } from "./data/transactions.js";
 
-describe("generateUserDate", () => {
+describe("generateUserData", () => {
   let httpClient;
   let usersService;
   let itemsService;
@@ -176,7 +176,7 @@ describe("generateUserDate", () => {
         transactions: formattedTransactions,
     };
 
-    await generateUserDate(usersService, itemsService, transactionsService, accountsService, email, password, jsonFilePath);
+    await generateUserData(usersService, itemsService, transactionsService, accountsService, email, password, jsonFilePath);
     
     const fileExists = fs.existsSync(jsonFilePath);
     expect(fileExists).toBe(true);
