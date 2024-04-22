@@ -10,6 +10,8 @@ This is a NodeJS script that uses superagent http client and returns a JSON obje
 - the list of **accounts** linked to the same items;
 - the last 2 bank **transactions**.
 
+**!Important**: We suppose for the sake of this exercice, to retrieve all the items and accounts of the user.
+
 The JSON file will have the following formalism:
 
 ``` JSON
@@ -90,7 +92,7 @@ Type in cmd:
 npm start
 ```
 
-A file named `bridge-api-results.son` will be generated and will appear in the root of the repository.
+A file named `bridge-api-results.json` will be generated and will appear in the root of the repository.
 
 ![alt text](./documentation/terminal-command.png)
 
