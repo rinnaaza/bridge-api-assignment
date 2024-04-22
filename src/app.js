@@ -6,7 +6,7 @@ import { ItemsService } from "./services/items-service.js";
 import { TransactionsService } from "./services/transactions-service.js";
 import { AccountsService } from "./services/accounts-service.js";
 
-import { generateUserDate } from "./helpers/generate-user-data.js";
+import { generateUserData } from "./helpers/generate-user-data.js";
 
 config();
 
