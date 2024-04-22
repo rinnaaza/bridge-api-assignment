@@ -40,9 +40,11 @@ class HttpClient {
     if (!this.#bridgeVersion) missingRequiredHeaders.push("Bridge-Version");
 
     if (missingRequiredHeaders.length > 0) {
-      throw new MissingRequiredHeaders(`The following required headers are missing: ${missingRequiredHeaders.join(", ")}`);
-    }    
-  };
+      throw new MissingRequiredHeaders(
+        `The following required headers are missing: ${missingRequiredHeaders.join(", ")}`
+      );
+    }
+  }
 
   /**
    * Sends post request to the API.
@@ -62,14 +64,12 @@ class HttpClient {
     const response = await superagent
       .post(url)
       .query(params)
-      .set(
-        { 
-          ...headers,
-          "Client-Id": this.#clientId,
-          "Client-Secret": this.#clientSecret,
-          "Bridge-Version": this.#bridgeVersion,
-        }
-      )
+      .set({
+        ...headers,
+        "Client-Id": this.#clientId,
+        "Client-Secret": this.#clientSecret,
+        "Bridge-Version": this.#bridgeVersion,
+      })
       .send(requestBody);
 
     return response;
@@ -81,7 +81,7 @@ class HttpClient {
    * @param {string} options.endpoint - Path of the API endpoint.
    * @param {object} options.params - Params object of the API.
    * @param {object} options.headers - Headers object of the API.
-   * @param {object} options.requestBody - Request body object of the API.  
+   * @param {object} options.requestBody - Request body object of the API.
    * @returns {Promise<object>} - Response body object.
    * @throws {Error} - Reponse error.
    */
@@ -93,14 +93,12 @@ class HttpClient {
     const response = await superagent
       .get(url)
       .query(params)
-      .set(
-        { 
-          ...headers,
-          "Client-Id": this.#clientId,
-          "Client-Secret": this.#clientSecret,
-          "Bridge-Version": this.#bridgeVersion,
-        }
-      )
+      .set({
+        ...headers,
+        "Client-Id": this.#clientId,
+        "Client-Secret": this.#clientSecret,
+        "Bridge-Version": this.#bridgeVersion,
+      })
       .send(requestBody);
 
     return response;

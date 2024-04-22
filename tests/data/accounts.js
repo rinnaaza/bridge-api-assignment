@@ -21,11 +21,11 @@ const firstAccount = {
     type: faker.string.alpha(),
     borrowed_capital: faker.number.int(),
     repaid_capital: faker.number.int(),
-    remaining_capital: faker.number.int()
+    remaining_capital: faker.number.int(),
   },
   savings_details: null,
   is_pro: false,
-  iban: faker.string.alpha()
+  iban: faker.string.alpha(),
 };
 
 const secondAccount = {
@@ -49,11 +49,11 @@ const secondAccount = {
     type: faker.string.alpha(),
     borrowed_capital: faker.number.int(),
     repaid_capital: faker.number.int(),
-    remaining_capital: faker.number.int()
+    remaining_capital: faker.number.int(),
   },
   savings_details: null,
   is_pro: false,
-  iban: faker.string.alpha()
+  iban: faker.string.alpha(),
 };
 
 const thirdAccount = {
@@ -77,11 +77,11 @@ const thirdAccount = {
     type: faker.string.alpha(),
     borrowed_capital: faker.number.int(),
     repaid_capital: faker.number.int(),
-    remaining_capital: faker.number.int()
+    remaining_capital: faker.number.int(),
   },
   savings_details: null,
   is_pro: false,
-  iban: faker.string.alpha()
+  iban: faker.string.alpha(),
 };
 const fourthAccount = {
   id: faker.number.int(),
@@ -104,11 +104,11 @@ const fourthAccount = {
     type: faker.string.alpha(),
     borrowed_capital: faker.number.int(),
     repaid_capital: faker.number.int(),
-    remaining_capital: faker.number.int()
+    remaining_capital: faker.number.int(),
   },
   savings_details: null,
   is_pro: false,
-  iban: faker.string.alpha()
+  iban: faker.string.alpha(),
 };
 
 export { firstAccount, secondAccount, thirdAccount, fourthAccount };

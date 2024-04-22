@@ -9,7 +9,7 @@ describe("JsonExporter: export()", () => {
   beforeAll(() => {
     jsonExporter = new JsonExporter(tokenInfo, items, transactions);
 
-    if (!fs.existsSync("./tests/fixtures")){
+    if (!fs.existsSync("./tests/fixtures")) {
       fs.mkdirSync("./tests/fixtures");
     }
   });
@@ -21,12 +21,12 @@ describe("JsonExporter: export()", () => {
   it("should add a .json file in the correct path", () => {
     const path = "./tests/fixtures/example.json";
     jsonExporter.export(path);
-    
+
     const formattedTokenInfo = {
       value: tokenInfo.access_token,
       expires_at: tokenInfo.expires_at,
     };
-  
+
     const formattedItems = items.map((item) => ({
       id: item.id,
       status: item.status,
@@ -44,9 +44,9 @@ describe("JsonExporter: export()", () => {
         type: account.type,
         currency_code: account.currency_code,
         iban: account.iban,
-      }))
+      })),
     }));
-  
+
     const formattedTransactions = transactions.map((transaction) => ({
       id: transaction.id,
       clean_description: transaction.clean_description,
@@ -61,17 +61,19 @@ describe("JsonExporter: export()", () => {
       is_future: transaction.is_future,
       show_client_side: transaction.show_client_side,
     }));
-  
+
     const expectedContent = {
-        access_token: formattedTokenInfo,
-        items: formattedItems,
-        transactions: formattedTransactions,
+      access_token: formattedTokenInfo,
+      items: formattedItems,
+      transactions: formattedTransactions,
     };
-    
+
     const fileExists = fs.existsSync(path);
     expect(fileExists).toBe(true);
 
-    const exportedJson = JSON.parse(fs.readFileSync("./tests/fixtures/example.json", 'utf8'));
+    const exportedJson = JSON.parse(
+      fs.readFileSync("./tests/fixtures/example.json", "utf8")
+    );
     expect(exportedJson).toStrictEqual(expectedContent);
   });
 });

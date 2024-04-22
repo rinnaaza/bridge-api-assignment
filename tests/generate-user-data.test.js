@@ -11,7 +11,11 @@ import { HttpClient } from "../src/services/http-client.js";
 import { secondUser, thirdUser, fourthUser } from "./data/users.js";
 import { firstItem } from "./data/items.js";
 import { firstAccount, thirdAccount } from "./data/accounts.js";
-import { firstTransaction, secondTransaction, thirdTransaction } from "./data/transactions.js";
+import {
+  firstTransaction,
+  secondTransaction,
+  thirdTransaction,
+} from "./data/transactions.js";
 
 describe("generateUserData", () => {
   let httpClient;
@@ -21,78 +25,83 @@ describe("generateUserData", () => {
   let accountsService;
 
   beforeAll(() => {
-    if (!fs.existsSync("./tests/fixtures")){
+    if (!fs.existsSync("./tests/fixtures")) {
       fs.mkdirSync("./tests/fixtures");
     }
 
     nock("https://api.bridgeapi.io")
-    .get("/v2/users")
-    .reply(200, {
-      "resources": [
-        {
-          email: "linna@email.com",
-          uuid: "uuid",
+      .get("/v2/users")
+      .reply(200, {
+        resources: [
+          {
+            email: "linna@email.com",
+            uuid: "uuid",
+          },
+          secondUser,
+          thirdUser,
+          fourthUser,
+        ],
+        pagination: {
+          next_uri: null,
         },
-        secondUser,
-        thirdUser,
-        fourthUser,
-      ],
-      "pagination": {
-        "next_uri": null,    
-      }
-    });
+      });
 
     nock("https://api.bridgeapi.io")
-    .post("/v2/authenticate", (body) => 
-      (
-        body 
-        && (body["email"] === "linna@email.com" && body["password"] === "password123")
-        && (body["user_uuid"] === "uuid")
-    ))
-    .reply(200, { access_token: "access_token", expires_at: "2022-01-01" });
+      .post(
+        "/v2/authenticate",
+        (body) =>
+          body &&
+          body["email"] === "linna@email.com" &&
+          body["password"] === "password123" &&
+          body["user_uuid"] === "uuid"
+      )
+      .reply(200, { access_token: "access_token", expires_at: "2022-01-01" });
 
-    nock("https://api.bridgeapi.io", { reqheaders: {
-      "Authorization": "Bearer access_token"
-    }})
-    .get("/v2/items?limit=500")
-    .reply(200, {
-      "resources": [
-        firstItem,
-      ],
-      "pagination": {
-        "next_uri": null,    
-      }
-    });
+    nock("https://api.bridgeapi.io", {
+      reqheaders: {
+        Authorization: "Bearer access_token",
+      },
+    })
+      .get("/v2/items?limit=500")
+      .reply(200, {
+        resources: [firstItem],
+        pagination: {
+          next_uri: null,
+        },
+      });
 
-    nock("https://api.bridgeapi.io", { reqheaders: {
-    "Authorization": "Bearer access_token"
-    }})
-    .get("/v2/accounts?item_id=123456&&limit=500")
-    .reply(200, {
-    "resources": [
-        firstAccount,
-        thirdAccount,
-    ],
-    "pagination": {
-        "next_uri": null,    
-    }
-    });
+    nock("https://api.bridgeapi.io", {
+      reqheaders: {
+        Authorization: "Bearer access_token",
+      },
+    })
+      .get("/v2/accounts?item_id=123456&&limit=500")
+      .reply(200, {
+        resources: [firstAccount, thirdAccount],
+        pagination: {
+          next_uri: null,
+        },
+      });
 
-    nock("https://api.bridgeapi.io", { reqheaders: {
-      "Authorization": "Bearer access_token"
-    }})
-    .get("/v2/transactions?limit=2")
-    .reply(200, {
-      "resources": [
-        firstTransaction,
-        secondTransaction,
-      ],
-      "pagination": {
-        "next_uri": null,    
-      }
-    });
+    nock("https://api.bridgeapi.io", {
+      reqheaders: {
+        Authorization: "Bearer access_token",
+      },
+    })
+      .get("/v2/transactions?limit=2")
+      .reply(200, {
+        resources: [firstTransaction, secondTransaction],
+        pagination: {
+          next_uri: null,
+        },
+      });
 
-    httpClient = new HttpClient("https://api.bridgeapi.io", "1234", "5678", "2021-06-01");
+    httpClient = new HttpClient(
+      "https://api.bridgeapi.io",
+      "1234",
+      "5678",
+      "2021-06-01"
+    );
     usersService = new UsersService(httpClient);
     itemsService = new ItemsService(httpClient);
     transactionsService = new TransactionsService(httpClient);
@@ -108,7 +117,7 @@ describe("generateUserData", () => {
       value: "access_token",
       expires_at: "2022-01-01",
     };
-  
+
     const formattedFirstItem = {
       ...firstItem,
       accounts: [
@@ -136,9 +145,9 @@ describe("generateUserData", () => {
           currency_code: thirdAccount.currency_code,
           iban: thirdAccount.iban,
         },
-      ]
+      ],
     };
-  
+
     const formattedTransactions = [
       {
         id: firstTransaction.id,
@@ -167,21 +176,31 @@ describe("generateUserData", () => {
         account_id: secondTransaction.account_id,
         is_future: secondTransaction.is_future,
         show_client_side: secondTransaction.show_client_side,
-      }
+      },
     ];
-  
+
     const expectedContent = {
-        access_token: formattedTokenInfo,
-        items: [formattedFirstItem],
-        transactions: formattedTransactions,
+      access_token: formattedTokenInfo,
+      items: [formattedFirstItem],
+      transactions: formattedTransactions,
     };
 
-    await generateUserData(usersService, itemsService, transactionsService, accountsService, email, password, jsonFilePath);
-    
+    await generateUserData(
+      usersService,
+      itemsService,
+      transactionsService,
+      accountsService,
+      email,
+      password,
+      jsonFilePath
+    );
+
     const fileExists = fs.existsSync(jsonFilePath);
     expect(fileExists).toBe(true);
 
-    const exportedJson = JSON.parse(fs.readFileSync("./tests/fixtures/bridge-api-results.json", 'utf8'));
+    const exportedJson = JSON.parse(
+      fs.readFileSync("./tests/fixtures/bridge-api-results.json", "utf8")
+    );
     expect(exportedJson).toStrictEqual(expectedContent);
   });
 });
