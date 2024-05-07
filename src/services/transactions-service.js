@@ -70,10 +70,10 @@ class TransactionsService {
     };
 
     const params = {
-      after: after,
-      limit: limit,
-      since: since,
-      until: until,
+      after,
+      limit,
+      since,
+      until,
     };
 
     if (fetchAll) {
